@@ -55,11 +55,10 @@ runs:
           });
 
     - name: "Add results to summary"
-      uses: actions/github-script@v7
+      shell: bash
       if: ${{ github.event_name != 'pull_request' }}
-      with:
-        script: |
-          echo "### Is My Code Great Results:" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          echo "${VALIDATION_OUTPUT:-No results found.}" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+      run: |
+        echo "### Is My Code Great Results:" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        echo "${VALIDATION_OUTPUT:-No results found.}" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
